@@ -4,6 +4,12 @@
 
 ---
 
+## 🖼️ Hero Image
+
+![Real-Time Customer Personalization Analytics](images/hero_image.png)
+
+---
+
 ## English
 
 ### 🚀 Overview
@@ -86,8 +92,8 @@ The platform processes customer interactions in real-time, applies machine learn
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │   BigQuery DW   │    │   ML Models     │    │   Firestore     │
 │                 │    │                 │    │                 │
-│ • Historical    │    │ • TensorFlow    │    │ • User Profiles │
-│ • Analytics     │    │ • AutoML        │    │ • Real-time     │
+│ • Historical    │    │ • TensorFlow    │    │ • AutoML        │
+│ • Analytics     │    │ • User Profiles │    │ • Real-time     │
 │ • Reporting     │    │ • Recommendations│   │ • Low Latency   │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
          │                       │                       │
@@ -270,9 +276,9 @@ import tensorflow as tf
 model = tf.keras.Sequential([
     tf.keras.layers.Embedding(num_users, embedding_size),
     tf.keras.layers.Embedding(num_items, embedding_size),
-    tf.keras.layers.Dense(128, activation='relu'),
-    tf.keras.layers.Dense(64, activation='relu'),
-    tf.keras.layers.Dense(1, activation='sigmoid')
+    tf.keras.layers.Dense(128, activation=\'relu\'),
+    tf.keras.layers.Dense(64, activation=\'relu\'),
+    tf.keras.layers.Dense(1, activation=\'sigmoid\')
 ])
 ```
 
@@ -367,7 +373,7 @@ DEBUG=false
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
+3. Commit your changes (`git commit -m \'Add amazing feature\' `)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
@@ -498,44 +504,222 @@ python personalization_engine.py
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-### 🔍 Principais Funcionalidades de Analytics
+#### Implantação Docker
 
-**Analytics de Comportamento do Cliente**
+```bash
+# Construa e execute com Docker Compose
+docker-compose up --build
+
+# Ou construa um contêiner individual
+docker build -t personalization-analytics .
+docker run -p 8000:8000 personalization-analytics
+```
+
+### 📊 Esquema de Dados
+
+#### Tabela de Perfis de Clientes
+| Coluna | Tipo | Descrição |
+|--------|------|-------------|
+| customer_id | STRING | Identificador único do cliente |
+| age | INTEGER | Idade do cliente |
+| gender | STRING | Gênero do cliente |
+| location | STRING | Localização geográfica |
+| segment | STRING | Segmento do cliente (VIP, Premium, Standard, New) |
+| preferences | JSON | Preferências de produto e conteúdo |
+| lifetime_value | FLOAT64 | Valor de vida previsto do cliente |
+| last_activity | TIMESTAMP | Carimbo de data/hora da última interação |
+
+#### Tabela de Interações
+| Coluna | Tipo | Descrição |
+|--------|------|-------------|
+| interaction_id | STRING | Identificador único da interação |
+| customer_id | STRING | Referência do cliente |
+| timestamp | TIMESTAMP | Carimbo de data/hora da interação |
+| event_type | STRING | Tipo de interação (visualização, clique, compra, etc.) |
+| item_id | STRING | Identificador do produto ou conteúdo |
+| channel | STRING | Canal de interação (web, mobile, e-mail) |
+| context | JSON | Dados de contexto adicionais |
+| session_id | STRING | Identificador da sessão |
+
+#### Tabela de Recomendações
+| Coluna | Tipo | Descrição |
+|--------|------|-------------|
+| recommendation_id | STRING | Identificador único da recomendação |
+| customer_id | STRING | Referência do cliente |
+| item_id | STRING | Item recomendado |
+| score | FLOAT64 | Pontuação de confiança da recomendação |
+| algorithm | STRING | Algoritmo usado para recomendação |
+| timestamp | TIMESTAMP | Hora de geração da recomendação |
+| context | STRING | Contexto da recomendação |
+| status | STRING | Status da recomendação (servido, clicado, convertido) |
+
+### 🔍 Principais Recursos de Análise
+
+**Análise de Comportamento do Cliente**
 - Rastreamento e análise de comportamento em tempo real
 - Mapeamento e visualização da jornada do cliente
 - Reconhecimento de padrões de engajamento
 - Predição e prevenção de churn
 - Otimização do valor de vida
 
-**Analytics de Recomendações**
-- Métricas de performance de recomendações
+**Análise de Recomendações**
+- Métricas de desempenho de recomendações
 - Testes A/B para otimização de algoritmos
-- Análise de taxas de click-through e conversão
-- Medição de atribuição de receita e impacto
+- Análise de taxa de cliques e conversão
+- Atribuição de receita e medição de impacto
 - Comparação e seleção de algoritmos
+
+**Efetividade da Personalização**
+- Medição do \"lift\" da personalização
+- Análise de desempenho baseada em segmentos
+- Comparação da efetividade do canal
+- Otimização do desempenho da campanha
+- Cálculo e relatório de ROI
+
+**Monitoramento em Tempo Real**
+- Métricas de desempenho do sistema
+- Monitoramento da precisão do modelo
+- Validação da qualidade dos dados
+- Sistema de alerta para anomalias
+- Rastreamento de escalabilidade e latência
+
+### 🧪 Modelos de Machine Learning
+
+#### Filtragem Colaborativa
+```python
+# Fatoração de matriz para recomendações de usuário-item
+from sklearn.decomposition import NMF
+
+model = NMF(n_components=50, random_state=42)
+user_item_matrix = model.fit_transform(interaction_matrix)
+```
+
+#### Filtragem Baseada em Conteúdo
+```python
+# TF-IDF e similaridade de cosseno para recomendações de conteúdo
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+tfidf = TfidfVectorizer(max_features=1000)
+content_features = tfidf.fit_transform(item_descriptions)
+similarity_matrix = cosine_similarity(content_features)
+```
+
+#### Recomendações de Deep Learning
+```python
+# Filtragem colaborativa neural com TensorFlow
+import tensorflow as tf
+
+model = tf.keras.Sequential([
+    tf.keras.layers.Embedding(num_users, embedding_size),
+    tf.keras.layers.Embedding(num_items, embedding_size),
+    tf.keras.layers.Dense(128, activation=\'relu\'),
+    tf.keras.layers.Dense(64, activation=\'relu\'),
+    tf.keras.layers.Dense(1, activation=\'sigmoid\')
+])
+```
 
 ### 🧪 Testes
 
 ```bash
-# Execute testes unitários
+# Executar testes de unidade
 pytest tests/unit/
 
-# Execute testes de integração
+# Executar testes de integração
 pytest tests/integration/
 
-# Execute com cobertura
+# Executar testes de desempenho
+pytest tests/performance/
+
+# Executar com cobertura
 pytest --cov=src tests/
 
 # Teste de carga
 locust -f tests/load_test.py --host=http://localhost:8000
 ```
 
+### 📚 Documentação da API
+
+#### Obter Recomendações
+```bash
+GET /api/v1/recommendations/{customer_id}
+```
+
+#### Rastrear Interação
+```bash
+POST /api/v1/interactions
+{
+  "customer_id": "12345",
+  "event_type": "click",
+  "item_id": "product_789",
+  "timestamp": "2025-07-07T12:00:00Z"
+}
+```
+
+#### Atualizar Perfil do Cliente
+```bash
+PUT /api/v1/customers/{customer_id}
+{
+  "preferences": {"category": "electronics"},
+  "segment": "premium"
+}
+```
+
+### 📈 Métricas de Desempenho
+
+| Métrica | Meta | Atual |
+|--------|--------|---------|
+| **Tempo de Resposta** | < 100ms | 85ms |
+| **Throughput** | 10k req/seg | 12k req/seg |
+| **Precisão** | > 85% | 89% |
+| **Disponibilidade** | 99.9% | 99.95% |
+| **Atualização de Dados** | < 1 minuto | 30 segundos |
+
+### 🔧 Configuração
+
+#### Variáveis de Ambiente
+```bash
+# Configuração GCP
+GOOGLE_CLOUD_PROJECT=seu-id-projeto
+GOOGLE_APPLICATION_CREDENTIALS=caminho/para/credenciais.json
+
+# Configuração do Banco de Dados
+BIGQUERY_DATASET=personalization
+FIRESTORE_COLLECTION=user_profiles
+
+# Configuração ML
+MODEL_VERSION=v1.2.0
+BATCH_SIZE=1000
+LEARNING_RATE=0.001
+
+# Configuração da API
+API_HOST=0.0.0.0
+API_PORT=8000
+DEBUG=false
+```
+
+### 📚 Documentação
+
+- [Documentação da API](docs/api.md)
+- [Guia de Treinamento de Modelo](docs/model_training.md)
+- [Guia de Implantação](docs/deployment.md)
+- [Otimização de Desempenho](docs/performance.md)
+- [Solução de Problemas](docs/troubleshooting.md)
+
+### 🤝 Contribuindo
+
+1. Faça um fork do repositório
+2. Crie uma branch de feature (`git checkout -b feature/amazing-feature`)
+3. Faça commit das suas alterações (`git commit -m \'Adicionei uma feature incrível\' `)
+4. Envie para a branch (`git push origin feature/amazing-feature`)
+5. Abra um Pull Request
+
 ### 👨‍💻 Autor
 
 **Gabriel Demetrios Lafis**
 - GitHub: [@galafis](https://github.com/galafis)
-- Especializado em Analytics em Tempo Real, Machine Learning e Personalização de Cliente
-- Expert em GCP, Streaming Analytics e Sistemas de Recomendação
+- Especializado em Análise em Tempo Real, Machine Learning e Personalização de Clientes
+- Especialista em GCP, Streaming Analytics e Sistemas de Recomendação
 
 ### 📄 Licença
 
@@ -546,5 +730,5 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 - Google Cloud Platform por fornecer infraestrutura robusta de ML e streaming
 - Equipe TensorFlow pelo excelente framework de machine learning
 - Comunidade Apache Beam pelas capacidades de processamento de stream
-- Contribuidores open source que tornaram este projeto possível
+- Contribuidores de código aberto que tornaram este projeto possível
 
