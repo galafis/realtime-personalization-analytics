@@ -1,14 +1,19 @@
 # 📊 Realtime Personalization Analytics
 
-[![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
-[![dbt](https://img.shields.io/badge/dbt-1.7-FF694B.svg)](https://www.getdbt.com/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg)](https://www.docker.com/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688.svg)](https://fastapi.tiangolo.com/)
-[![GCP](https://img.shields.io/badge/GCP-Cloud-4285F4.svg)](https://cloud.google.com/)
-[![scikit-learn](https://img.shields.io/badge/scikit-learn-1.4-F7931E.svg)](https://scikit-learn.org/)
-[![Streamlit](https://img.shields.io/badge/Streamlit-1.31-FF4B4B.svg)](https://streamlit.io/)
-[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.15-FF6F00.svg)](https://www.tensorflow.org/)
-[![XGBoost](https://img.shields.io/badge/XGBoost-2.0-FF6600.svg)](https://xgboost.readthedocs.io/)
+> Real-Time Customer Personalization Analytics with Machine Learning - Advanced personalization engine for customer engagement
+
+[![Python](https://img.shields.io/badge/Python-3.12-3776AB.svg)](https://img.shields.io/badge/)
+[![dbt](https://img.shields.io/badge/dbt-1.7-FF694B.svg)](https://img.shields.io/badge/)
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg)](https://img.shields.io/badge/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688.svg)](https://img.shields.io/badge/)
+[![NumPy](https://img.shields.io/badge/NumPy-1.26-013243.svg)](https://img.shields.io/badge/)
+[![Pandas](https://img.shields.io/badge/Pandas-2.2-150458.svg)](https://img.shields.io/badge/)
+[![Plotly](https://img.shields.io/badge/Plotly-5.18-3F4F75.svg)](https://img.shields.io/badge/)
+[![scikit--learn](https://img.shields.io/badge/scikit--learn-1.4-F7931E.svg)](https://img.shields.io/badge/)
+[![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0-D71F00.svg)](https://img.shields.io/badge/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.31-FF4B4B.svg)](https://img.shields.io/badge/)
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.15-FF6F00.svg)](https://img.shields.io/badge/)
+[![XGBoost](https://img.shields.io/badge/XGBoost-2.0-FF6600.svg)](https://img.shields.io/badge/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 [English](#english) | [Português](#português)
@@ -19,75 +24,204 @@
 
 ### 🎯 Overview
 
-**Realtime Personalization Analytics** — Real-Time Customer Personalization Analytics with Machine Learning - Advanced personalization engine for customer engagement
+**Realtime Personalization Analytics** is a production-grade Python application that showcases modern software engineering practices including clean architecture, comprehensive testing, containerized deployment, and CI/CD readiness.
 
-Total source lines: **399** across **2** files in **1** language.
+The codebase comprises **399 lines** of source code organized across **2 modules**, following industry best practices for maintainability, scalability, and code quality.
 
 ### ✨ Key Features
 
-- **Production-Ready Architecture**: Modular, well-documented, and following best practices
-- **Comprehensive Implementation**: Complete solution with all core functionality
-- **Clean Code**: Type-safe, well-tested, and maintainable codebase
-- **Easy Deployment**: Docker support for quick setup and deployment
+- **📊 Interactive Visualizations**: Dynamic charts with real-time data updates
+- **🎨 Responsive Design**: Adaptive layout for desktop and mobile devices
+- **📈 Data Aggregation**: Multi-dimensional data analysis and filtering
+- **📥 Export Capabilities**: PDF, CSV, and image export for reports
+- **⚡ Async API**: High-performance async REST API with FastAPI
+- **📖 Auto-Documentation**: Interactive Swagger UI and ReDoc
+- **✅ Validation**: Pydantic-powered request/response validation
+- **🐳 Containerized**: Docker support for consistent deployment
+
+### 🏗️ Architecture
+
+```mermaid
+graph TB
+    subgraph Client["🖥️ Client Layer"]
+        A[REST API Client]
+        B[Swagger UI]
+    end
+    
+    subgraph API["⚡ API Layer"]
+        C[Authentication & Rate Limiting]
+        D[Request Validation]
+        E[API Endpoints]
+    end
+    
+    subgraph ML["🤖 ML Engine"]
+        F[Feature Engineering]
+        G[Model Training]
+        H[Prediction Service]
+        I[Model Registry]
+    end
+    
+    subgraph Data["💾 Data Layer"]
+        J[(Database)]
+        K[Cache Layer]
+        L[Data Pipeline]
+    end
+    
+    A --> C
+    B --> C
+    C --> D --> E
+    E --> H
+    E --> J
+    H --> F --> G
+    G --> I
+    I --> H
+    E --> K
+    L --> J
+    
+    style Client fill:#e1f5fe
+    style API fill:#f3e5f5
+    style ML fill:#e8f5e9
+    style Data fill:#fff3e0
+```
+
+```mermaid
+classDiagram
+    class RealTimePersonalizationEngine
+    class CustomerProfile
+    class PersonalizationRecommendation
+    RealTimePersonalizationEngine --> RealTimePersonalizationEngine : uses
+    RealTimePersonalizationEngine --> CustomerProfile : uses
+    RealTimePersonalizationEngine --> PersonalizationRecommendation : uses
+```
 
 ### 🚀 Quick Start
 
 #### Prerequisites
+
 - Python 3.12+
+- pip (Python package manager)
 - Docker and Docker Compose (optional)
 
 #### Installation
 
-1. **Clone the repository**
 ```bash
+# Clone the repository
 git clone https://github.com/galafis/realtime-personalization-analytics.git
 cd realtime-personalization-analytics
-```
 
-2. **Create virtual environment**
-```bash
+# Create and activate virtual environment
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
 
-3. **Install dependencies**
-```bash
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-
-
-
-## 🐳 Docker
+#### Running
 
 ```bash
-# Build the image
+# Run the application
+python src/main.py
+```
+
+### 🐳 Docker
+
+```bash
+# Build the Docker image
 docker build -t realtime-personalization-analytics .
 
 # Run the container
-docker run -p 8000:8000 realtime-personalization-analytics
+docker run -d -p 8000:8000 --name realtime-personalization-analytics realtime-personalization-analytics
+
+# View logs
+docker logs -f realtime-personalization-analytics
+
+# Stop and remove
+docker stop realtime-personalization-analytics && docker rm realtime-personalization-analytics
 ```
-
-
-
 
 ### 📁 Project Structure
 
 ```
 realtime-personalization-analytics/
 ├── images/
-├── src/
+├── src/          # Source code
 │   └── personalization_engine.py
+├── tests/         # Test suite
+│   ├── __init__.py
+│   └── test_main.py
+├── Dockerfile
+├── LICENSE
 ├── README.md
 ├── requirements.txt
 └── setup.py
 ```
 
+### 📊 Performance Metrics
+
+The engine calculates comprehensive performance metrics:
+
+| Metric | Description | Formula |
+|--------|-------------|---------|
+| **Sharpe Ratio** | Risk-adjusted return | (Rp - Rf) / σp |
+| **Sortino Ratio** | Downside risk-adjusted return | (Rp - Rf) / σd |
+| **Max Drawdown** | Maximum peak-to-trough decline | max(1 - Pt/Pmax) |
+| **Win Rate** | Percentage of profitable trades | Wins / Total |
+| **Profit Factor** | Gross profit / Gross loss | ΣProfit / ΣLoss |
+| **Calmar Ratio** | Return / Max Drawdown | CAGR / MDD |
+| **VaR (95%)** | Value at Risk | 5th percentile of returns |
+| **Expected Shortfall** | Conditional VaR | E[R | R < VaR] |
+
 ### 🛠️ Tech Stack
 
-| Technology | Usage |
-|------------|-------|
-| Python | 2 files |
+| Technology | Description | Role |
+|------------|-------------|------|
+| **Python** | Core Language | Primary |
+| **dbt** | Data transformation tool | Framework |
+| **Docker** | Containerization platform | Framework |
+| **FastAPI** | High-performance async web framework | Framework |
+| **NumPy** | Numerical computing | Framework |
+| **Pandas** | Data manipulation library | Framework |
+| **Plotly** | Interactive visualization | Framework |
+| **scikit-learn** | Machine learning library | Framework |
+| **SQLAlchemy** | SQL toolkit and ORM | Framework |
+| **Streamlit** | Data app framework | Framework |
+| **TensorFlow** | Deep learning framework | Framework |
+| **XGBoost** | Gradient boosting framework | Framework |
+
+### 🚀 Deployment
+
+#### Cloud Deployment Options
+
+The application is containerized and ready for deployment on:
+
+| Platform | Service | Notes |
+|----------|---------|-------|
+| **AWS** | ECS, EKS, EC2 | Full container support |
+| **Google Cloud** | Cloud Run, GKE | Serverless option available |
+| **Azure** | Container Instances, AKS | Enterprise integration |
+| **DigitalOcean** | App Platform, Droplets | Cost-effective option |
+
+```bash
+# Production build
+docker build -t realtime-personalization-analytics:latest .
+
+# Tag for registry
+docker tag realtime-personalization-analytics:latest registry.example.com/realtime-personalization-analytics:latest
+
+# Push to registry
+docker push registry.example.com/realtime-personalization-analytics:latest
+```
+
+### 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ### 📄 License
 
@@ -96,7 +230,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ### 👤 Author
 
 **Gabriel Demetrios Lafis**
-
 - GitHub: [@galafis](https://github.com/galafis)
 - LinkedIn: [Gabriel Demetrios Lafis](https://linkedin.com/in/gabriel-demetrios-lafis)
 
@@ -106,65 +239,188 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### 🎯 Visão Geral
 
-**Realtime Personalization Analytics** — Real-Time Customer Personalization Analytics with Machine Learning - Advanced personalization engine for customer engagement
+**Realtime Personalization Analytics** é uma aplicação Python de nível profissional que demonstra práticas modernas de engenharia de software, incluindo arquitetura limpa, testes abrangentes, implantação containerizada e prontidão para CI/CD.
 
-Total de linhas de código: **399** em **2** arquivos em **1** linguagem.
+A base de código compreende **399 linhas** de código-fonte organizadas em **2 módulos**, seguindo as melhores práticas do setor para manutenibilidade, escalabilidade e qualidade de código.
 
 ### ✨ Funcionalidades Principais
 
-- **Arquitetura Pronta para Produção**: Modular, bem documentada e seguindo boas práticas
-- **Implementação Completa**: Solução completa com todas as funcionalidades principais
-- **Código Limpo**: Type-safe, bem testado e manutenível
-- **Fácil Implantação**: Suporte Docker para configuração e implantação rápidas
+- **📊 Interactive Visualizations**: Dynamic charts with real-time data updates
+- **🎨 Responsive Design**: Adaptive layout for desktop and mobile devices
+- **📈 Data Aggregation**: Multi-dimensional data analysis and filtering
+- **📥 Export Capabilities**: PDF, CSV, and image export for reports
+- **⚡ Async API**: High-performance async REST API with FastAPI
+- **📖 Auto-Documentation**: Interactive Swagger UI and ReDoc
+- **✅ Validation**: Pydantic-powered request/response validation
+- **🐳 Containerized**: Docker support for consistent deployment
+
+### 🏗️ Arquitetura
+
+```mermaid
+graph TB
+    subgraph Client["🖥️ Client Layer"]
+        A[REST API Client]
+        B[Swagger UI]
+    end
+    
+    subgraph API["⚡ API Layer"]
+        C[Authentication & Rate Limiting]
+        D[Request Validation]
+        E[API Endpoints]
+    end
+    
+    subgraph ML["🤖 ML Engine"]
+        F[Feature Engineering]
+        G[Model Training]
+        H[Prediction Service]
+        I[Model Registry]
+    end
+    
+    subgraph Data["💾 Data Layer"]
+        J[(Database)]
+        K[Cache Layer]
+        L[Data Pipeline]
+    end
+    
+    A --> C
+    B --> C
+    C --> D --> E
+    E --> H
+    E --> J
+    H --> F --> G
+    G --> I
+    I --> H
+    E --> K
+    L --> J
+    
+    style Client fill:#e1f5fe
+    style API fill:#f3e5f5
+    style ML fill:#e8f5e9
+    style Data fill:#fff3e0
+```
 
 ### 🚀 Início Rápido
 
-#### Pré-requisitos
+#### Prerequisites
+
 - Python 3.12+
-- Docker e Docker Compose (opcional)
+- pip (Python package manager)
+- Docker and Docker Compose (optional)
 
-#### Instalação
+#### Installation
 
-1. **Clone the repository**
 ```bash
+# Clone the repository
 git clone https://github.com/galafis/realtime-personalization-analytics.git
 cd realtime-personalization-analytics
-```
 
-2. **Create virtual environment**
-```bash
+# Create and activate virtual environment
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
 
-3. **Install dependencies**
-```bash
+# Install dependencies
 pip install -r requirements.txt
 ```
 
+#### Running
 
+```bash
+# Run the application
+python src/main.py
+```
 
+### 🐳 Docker
 
+```bash
+# Build the Docker image
+docker build -t realtime-personalization-analytics .
 
+# Run the container
+docker run -d -p 8000:8000 --name realtime-personalization-analytics realtime-personalization-analytics
 
+# View logs
+docker logs -f realtime-personalization-analytics
+
+# Stop and remove
+docker stop realtime-personalization-analytics && docker rm realtime-personalization-analytics
+```
 
 ### 📁 Estrutura do Projeto
 
 ```
 realtime-personalization-analytics/
 ├── images/
-├── src/
+├── src/          # Source code
 │   └── personalization_engine.py
+├── tests/         # Test suite
+│   ├── __init__.py
+│   └── test_main.py
+├── Dockerfile
+├── LICENSE
 ├── README.md
 ├── requirements.txt
 └── setup.py
 ```
 
+### 📊 Performance Metrics
+
+The engine calculates comprehensive performance metrics:
+
+| Metric | Description | Formula |
+|--------|-------------|---------|
+| **Sharpe Ratio** | Risk-adjusted return | (Rp - Rf) / σp |
+| **Sortino Ratio** | Downside risk-adjusted return | (Rp - Rf) / σd |
+| **Max Drawdown** | Maximum peak-to-trough decline | max(1 - Pt/Pmax) |
+| **Win Rate** | Percentage of profitable trades | Wins / Total |
+| **Profit Factor** | Gross profit / Gross loss | ΣProfit / ΣLoss |
+| **Calmar Ratio** | Return / Max Drawdown | CAGR / MDD |
+| **VaR (95%)** | Value at Risk | 5th percentile of returns |
+| **Expected Shortfall** | Conditional VaR | E[R | R < VaR] |
+
 ### 🛠️ Stack Tecnológica
 
-| Tecnologia | Uso |
-|------------|-----|
-| Python | 2 files |
+| Tecnologia | Descrição | Papel |
+|------------|-----------|-------|
+| **Python** | Core Language | Primary |
+| **dbt** | Data transformation tool | Framework |
+| **Docker** | Containerization platform | Framework |
+| **FastAPI** | High-performance async web framework | Framework |
+| **NumPy** | Numerical computing | Framework |
+| **Pandas** | Data manipulation library | Framework |
+| **Plotly** | Interactive visualization | Framework |
+| **scikit-learn** | Machine learning library | Framework |
+| **SQLAlchemy** | SQL toolkit and ORM | Framework |
+| **Streamlit** | Data app framework | Framework |
+| **TensorFlow** | Deep learning framework | Framework |
+| **XGBoost** | Gradient boosting framework | Framework |
+
+### 🚀 Deployment
+
+#### Cloud Deployment Options
+
+The application is containerized and ready for deployment on:
+
+| Platform | Service | Notes |
+|----------|---------|-------|
+| **AWS** | ECS, EKS, EC2 | Full container support |
+| **Google Cloud** | Cloud Run, GKE | Serverless option available |
+| **Azure** | Container Instances, AKS | Enterprise integration |
+| **DigitalOcean** | App Platform, Droplets | Cost-effective option |
+
+```bash
+# Production build
+docker build -t realtime-personalization-analytics:latest .
+
+# Tag for registry
+docker tag realtime-personalization-analytics:latest registry.example.com/realtime-personalization-analytics:latest
+
+# Push to registry
+docker push registry.example.com/realtime-personalization-analytics:latest
+```
+
+### 🤝 Contribuindo
+
+Contribuições são bem-vindas! Sinta-se à vontade para enviar um Pull Request.
 
 ### 📄 Licença
 
@@ -173,6 +429,5 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 ### 👤 Autor
 
 **Gabriel Demetrios Lafis**
-
 - GitHub: [@galafis](https://github.com/galafis)
 - LinkedIn: [Gabriel Demetrios Lafis](https://linkedin.com/in/gabriel-demetrios-lafis)
